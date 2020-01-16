@@ -6,12 +6,11 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'queue'],
     'controllerNamespace' => 'app\commands',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
-        '@tests' => '@app/tests',
     ],
     'components' => [
         'cache' => [
@@ -26,6 +25,14 @@ $config = [
             ],
         ],
         'db' => $db,
+		'queue' => [
+			'class' => \yii\queue\db\Queue::class,
+			'as log' => \yii\queue\LogBehavior::class,
+			'db' => 'db',
+			'tableName' => '{{%queue}}',
+			'channel' => 'default',
+			'mutex' => \yii\mutex\MysqlMutex::class,
+		],
     ],
     'params' => $params,
     /*

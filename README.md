@@ -1,21 +1,18 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
-    <br>
-</p>
+Пример взаимодействия с VK API.
+Пример сделан на основе фреймоворка Yii2.
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
+В данном примере можно создать выборку поьзователей ВК по условиям и затем отправить по этой выборке сообщение.
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
+Для развёртывания необходимо:
+1. Создать БД MySQL и настроить к ней подключение в config/db.php
+2. Развенуть дамп базы данных MySQL из файла dump.sql.
+3. Заменить в файле models/Consts.php VK_ACCESS_TOKEN_SEND - это токен сообщества ВК от которого будут отправляться сообщения, VK_ACCESS_TOKEN_GET_INFO - это токен пользователя ВК от которого будет осуществляться поиск пользователей ВК.
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Build Status](https://travis-ci.com/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.com/yiisoft/yii2-app-basic)
+При отправке собщений ВК создаётся задание и ставится в очередь. В примере в качестве очереди используется таблица в БД queue, при желании можно перейти на брокер сообщений подробнее https://www.yiiframework.com/extension/yiisoft/yii2-queue/doc/guide/2.0/ru/usage
+
+Так же очередь необходимо поставить на обработку, чтобы сообщения отправлялись подробности по ссылке выше.
+
+Ниже информация о самом фреймоворке и его развёртывании.
 
 DIRECTORY STRUCTURE
 -------------------
